@@ -23,14 +23,23 @@ ORDER BY utenti.username;
 SELECT 
     citta.nome
 FROM
-    utenti
+    regioni
         RIGHT JOIN
-    citta ON utenti.id_citta = citta.id_citta
-ORDER BY citta.id_citta;
+    citta ON regioni.id_regione = citta.id_citta;
+
+/*
+SELECT DISTINCT
+    citta.nome
+FROM
+    regioni
+        RIGHT JOIN
+    citta ON regioni.id_regione = citta.id_citta;
+-- ORDER BY citta.id_citta;
+*/
 
 -- --------------------------------------------------------------------------------------------------------------------------------
 
--- Full Outer Join
+-- Full Outer Join -> Tutti gli elementi
 SELECT 
     utenti.username, citta.nome
 FROM
@@ -46,7 +55,18 @@ FROM
  
 -- --------------------------------------------------------------------------------------------------------------------------------
 
--- Inner Join delle tabelle "utenti", "regioni", "citta"
+-- Inner Join delle tabelle "utenti", "regioni", "citta" -> Tutti gli elementi non nulli
+    
+SELECT 
+    utenti.username, citta.nome, regioni.nome
+FROM
+    utenti
+        INNER JOIN
+    citta ON utenti.id_citta = citta.id_citta
+        INNER JOIN
+    regioni ON citta.id_regione = regioni.id_regione;
+    
+/*
 SELECT 
     utenti.username, citta.nome, regioni.nome
 FROM
@@ -57,6 +77,7 @@ FROM
     regioni ON citta.id_regione = regioni.id_regione
 WHERE
     regioni.id_regione = 1;
+*/    
     
 -- --------------------------------------------------------------------------------------------------------------------------------
 
